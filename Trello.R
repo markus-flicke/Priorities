@@ -1,5 +1,8 @@
 library(plotly)
 setwd('/Users/m/code/Python/Trello')
+system('python3 gettrello.py f703bd1e4f4fab4295e8a7a98b16067ff76315d90337b69020ab9b23b177873d')
+# Urgency as a scale of time (weekday, month)
+
 
 trello <- read.csv("trello")
 logDays <- log(trello$days)
@@ -18,4 +21,5 @@ p <- plot_ly(trello, x = ~urgency, y = ~importance, type = 'scatter', mode = 'ma
   layout(title = 'Priorites',
          xaxis = list(showgrid = TRUE),
          yaxis = list(tickvals=~trello$importance,ticktext=~trello$importance))
-p
+
+export(p, file = "Priorities.png")
